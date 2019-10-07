@@ -1,3 +1,5 @@
+require 'set'
+
 $number_to_letter_hash = {
 						 2 => ["a","b", "c"], 
 						 3 => ["d","e", "f"], 
@@ -161,6 +163,7 @@ private
 				lines.each do |key, value|
 					alphabet_words = word_combination["#{key}"]
 					if alphabet_words != nil && !alphabet_words.empty?
+						value = value.to_set
 						alphabet_words.each do |word|
 							search_word = word.upcase + "\n"
 							if value.include?(search_word)
