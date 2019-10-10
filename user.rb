@@ -54,35 +54,25 @@ private
 	end
 
 
-	def possible_three_letter_combinations
-		combination_first, combination_second, combination_third = nil, nil, nil
-		result = combine_array(0,2)
-		unless result.empty?
-			first_combination, second_combination, third_combination = [], [], []
+	def letter_combinations
+		words_size_combination = WordSizeCombination.new(3).get_size_combinations
+		alphabet_words = {}
+		final_words_combination = []
+		max_loops = words_size_combination.length
+		count = 0
 
-			first_combination << result
-			first_combination << combine_array(3,5)
-			unless first_combination[1].empty? 
-				first_combination << combine_array(6,9)
-				unless first_combination[2].empty? 
-					combination_first = first_combination[0].product(first_combination[1]).product(first_combination[2]).map { | item| item.flatten.join(",") }
-				end
-			end	
-			second_combination << result
-			second_combination << combine_array(3,6)
-			unless second_combination[1].empty? 
-				second_combination << combine_array(7,9)
-				unless second_combination[2].empty? 
-					combination_second = second_combination[0].product(second_combination[1]).product(second_combination[2]).map { | item| item.flatten.join(",") }
-				end
+		while count != max_loops
+			start_index = 0
+
+			words_size_combination.each do |index|
+				letters = @letters_combination[start_index]
+				end_index = start_index + index
+				start_index = end_index
+				words = letters.product()
+
 			end
-			third_combination << result
-			third_combination << combine_array(3,9)
-			unless third_combination[1].empty?
-				combination_third = third_combination[0].product(third_combination[1]).map { | item| item.flatten.join(",")}
-			end
+			count = count + 1
 		end
-		return [combination_first, combination_second, combination_third].compact
 	end
 
 	def possible_four_letter_combinations

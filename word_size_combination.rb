@@ -1,25 +1,27 @@
-class NumberCombination
-  MIN_SIZE = 3
+class WordSizeCombination
+  #10 digit Phone number    
+  MAX_SIZE = 10
+  attr_accessor :mini_size
 
-  def initialize(length)    
-    @length = length
-    # @min_size = 3
-    @word_length = MIN_SIZE
+  def initialize(mini_size)
+   # minimum word length = 3
+   self.mini_size = mini_size
+   @word_length = mini_size
   end
 
-  # Will generate the split based on the length and min_size
-  def get_number_combinations
+  # generating the number combination for the length
+  def get_size_combinations
     final_combination = Set.new
 
-    while @word_length <= @length 
+    while @word_length <= MAX_SIZE 
       combinations = []
       combinations.push(@word_length)
-      remaining_length = @length - @word_length
+      remaining_length = MAX_SIZE - @word_length
       
       while remaining_length > 0 
-        if remaining_length >= MIN_SIZE
-          combinations.push(MIN_SIZE)
-          remaining_length = remaining_length - MIN_SIZE
+        if remaining_length >= mini_size
+          combinations.push(mini_size)
+          remaining_length = remaining_length - mini_size
         else
           # If remianing legth is less than min_size add the reamining to the last.
           combinations[-1] = combinations[-1] + remaining_length
@@ -32,8 +34,8 @@ class NumberCombination
 		
 	  # rotating the combinations to generate all possible combination
       # eg: [3, 3, 4], [3, 4, 3] & [4, 3, 3].
-	  (1..max_rotation).upto { combination = combination.rotate
-							   final_combination << combination
+	  1.upto(max_rotation) { combinations = combinations.rotate
+							   final_combination << combinations
 	  						 }
 		
       @word_length = @word_length + 1
