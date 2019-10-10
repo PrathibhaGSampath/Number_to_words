@@ -15,6 +15,9 @@ class User
 	splited_numbers = []
 	@letters_combination = []
 
+	def initialize
+	end
+
 	attr_accessor :phone_number
 
 	def get_phone_number_word_combination
